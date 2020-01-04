@@ -18,12 +18,12 @@ void f_push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	operation = strtok(NULL, "\n \t\r");
-	if (!operation || !stack)
+	if (!operation || isdigit(*operation) == 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	n = line_number;
+	n = atoi(operation);
 	newnode->n = n;
 	newnode->next = *stack;
 	newnode->prev = NULL;

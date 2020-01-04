@@ -7,7 +7,8 @@
  */
 int read_file(char *file, stack_t **stack)
 {
-	size_t len;
+	/** Here I will read the file*/
+	size_t len = 0;
 	ssize_t reading;
 	unsigned int counter = 0;
 	char *line = NULL;
@@ -16,6 +17,11 @@ int read_file(char *file, stack_t **stack)
 
 	fd = fopen(file, "r");
 
+	if (!fd)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", file);
+		exit(EXIT_FAILURE);
+	}
 	while ((reading = getline(&line, &len, fd)) != -1)
 	{
 		operation = strtok(line, "\n \t\r");

@@ -1,5 +1,4 @@
 #include "monty.h"
-glob_t global;
 /**
  * main - Main function
  * @argc: Argument counter
@@ -9,6 +8,7 @@ glob_t global;
 int main(int argc, char *argv[])
 {
 	stack_t *head = NULL;
+
 	global.top = &head;
 	if (argc != 2)
 	{

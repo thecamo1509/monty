@@ -15,6 +15,12 @@ int read_file(char *file, stack_t **stack)
 	FILE *fd;
 	char *operation;
 
+	if(!file)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", file);
+		exit(EXIT_FAILURE);
+	}
+
 	fd = fopen(file, "r");
 
 	if (!fd)
@@ -29,6 +35,7 @@ int read_file(char *file, stack_t **stack)
 		if (operation != NULL)
 			activate_op(stack, operation, counter);
 	}
+	free(line);
 	fclose(fd);
 	return (0);
 }

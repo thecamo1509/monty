@@ -28,6 +28,7 @@ int read_file(char *file, stack_t **stack)
 		fprintf(stderr, "Error: Can't open file %s\n", file);
 		exit(EXIT_FAILURE);
 	}
+	atexit(freememory);
 	while ((reading = getline(&line, &len, fd)) != -1)
 	{
 		operation = strtok(line, "\n \t\r");

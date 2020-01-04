@@ -56,10 +56,11 @@ typedef struct glob_s
 	instruction_t **ops;
 } glob_t;
 
-extern glob_t glob;
+extern glob_t global;
 
 int read_file(char *file, stack_t **stack);
 void activate_op(stack_t **stack, char *operation, unsigned int line_number);
 void f_push(stack_t **stack, unsigned int line_number);
 void f_pall(stack_t **stack, unsigned int line_number);
+void freememory(void);
 #endif

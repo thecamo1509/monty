@@ -9,10 +9,10 @@ int read_file(char *file, stack_t **stack)
 {
 	/** Here I will read the file*/
 	size_t len = 0;
-	ssize_t reading;
+	ssize_t reading = 0;
 	unsigned int counter = 0;
 	char *line = NULL;
-	char *operation;
+	char *operation = NULL;
 
 	if (!file)
 	{
@@ -24,16 +24,17 @@ int read_file(char *file, stack_t **stack)
 	if (!global.fd)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", file);
+		fclose(global.fd);
 		exit(EXIT_FAILURE);
 	}
-	atexit(freememory);
 	while ((reading = getline(&line, &len, global.fd)) != -1)
 	{
-		operation = strtok(line, "\n \t\r");
+		operation = strtok(line, "\n \t");
 		counter++;
 		if (operation != NULL)
 			activate_op(stack, operation, counter);
 	}
+	free(line);
 	fclose(global.fd);
 	return (0);
 }

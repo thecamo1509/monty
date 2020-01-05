@@ -13,6 +13,7 @@ void activate_op(stack_t **stack, char *operation, unsigned int line_number)
 	instruction_t operations[] = {
 		{"push", f_push},
 		{"pall", f_pall},
+		{"pint", f_pint},
 		{NULL, NULL}
 	};
 	for (i = 0; operations[i].opcode; i++)
@@ -25,7 +26,7 @@ void activate_op(stack_t **stack, char *operation, unsigned int line_number)
 	}
 	if (strlen(operation) != 0 && operation[0] != '#')
 	{
-		printf("L%u: unknown instruction %s\n", line_number, operation);
+		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, operation);
 		exit(EXIT_FAILURE);
 	}
 }

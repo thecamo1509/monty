@@ -7,9 +7,9 @@
  */
 void f_push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *newnode;
-	char *operation;
-	int n, i;
+	stack_t *newnode = NULL;
+	char *operation = NULL;
+	int n = 0, i = 0;
 
 	newnode = malloc(sizeof(stack_t));
 	if (!newnode)
@@ -28,17 +28,13 @@ void f_push(stack_t **stack, unsigned int line_number)
 		if (isdigit(operation[i]) == 0)
 		{
 			fprintf(stderr, "L%u: usage: push integer\n", line_number);
-			free(newnode);
 			exit(EXIT_FAILURE);
 		}
 	}
-	if (*operation)
-	{
 	n = atoi(operation);
 	newnode->n = n;
 	newnode->next = *stack;
 	newnode->prev = NULL;
-	}
 	if (newnode->next != NULL)
 	{
 		newnode->next->prev = newnode;
@@ -63,4 +59,21 @@ void f_pall(stack_t **stack, unsigned int line_number)
 		printf("%d\n", node->n);
 		node = node->next;
 	}
+}
+
+/**
+ * f_pint - prints value at top of stack
+ * @stack: pointer to the first node
+ * @line_number: value of new node
+ * Return: nothing
+ */
+
+void f_pint(stack_t **stack, unsigned int line_number)
+{
+	if (stack == NULL || *stack == NULL)
+	{
+		printf("L%u: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
 }

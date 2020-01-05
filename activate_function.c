@@ -17,6 +17,10 @@ void activate_op(stack_t **stack, char *operation, unsigned int line_number)
 		{"pint", f_pint},
 		{NULL, NULL}
 	};
+	if (operation == NULL)
+	{
+		return;
+	}
 	for (i = 0; operations[i].opcode; i++)
 	{
 		if (strcmp(operation, operations[i].opcode) == 0)

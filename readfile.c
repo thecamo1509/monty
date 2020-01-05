@@ -31,8 +31,7 @@ int read_file(char *file, stack_t **stack)
 	{
 		operation = strtok(line, "\n \t");
 		counter++;
-		if (operation != NULL)
-			activate_op(stack, operation, counter);
+		activate_op(stack, operation, counter);
 	}
 	fclose(global.fd);
 	free(line);

@@ -6,13 +6,13 @@
  */
 void freememory(stack_t *head)
 {
-	stack_t *temp = head;
+	stack_t *temp;
 
-	while (temp)
+	while (head)
 	{
-		free(head);
-		head = temp->next;
-		temp = temp->next;
+		temp = head;
+		head = head->next;
+		free(temp);
 	}
 	free(head);
 }

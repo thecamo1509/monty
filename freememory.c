@@ -4,16 +4,15 @@
  * stack
  * Return: nothing
  */
-void freememory(void)
+void freememory(stack_t *head)
 {
-	stack_t *tmp1, *tmp2 = NULL;
+	stack_t *temp = head;
 
-	tmp1 = *(global.top);
-	while (tmp1 != NULL)
+	while (temp)
 	{
-		tmp2 = tmp1->next;
-		free(tmp1);
-		tmp1 = tmp2;
+		free(head);
+		head = temp->next;
+		temp = temp->next;
 	}
-	fclose(global.fd);
+	free(head);
 }

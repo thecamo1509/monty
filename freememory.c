@@ -1,7 +1,7 @@
 #include "monty.h"
 /**
  * freememory - This will free the memory from the
- * stack
+ * @head: Head of the node
  * Return: nothing
  */
 void freememory(stack_t *head)

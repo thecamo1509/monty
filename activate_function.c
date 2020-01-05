@@ -15,6 +15,7 @@ void activate_op(stack_t **stack, char *operation, unsigned int line_number)
 		{"push", f_push},
 		{"pall", f_pall},
 		{"pint", f_pint},
+		{"pop", f_pop},
 		{NULL, NULL}
 	};
 	if (operation == NULL)

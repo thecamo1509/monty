@@ -24,7 +24,6 @@ int read_file(char *file, stack_t **stack)
 	if (!global.fd)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", file);
-		fclose(global.fd);
 		exit(EXIT_FAILURE);
 	}
 	while ((reading = getline(&line, &len, global.fd)) != -1)

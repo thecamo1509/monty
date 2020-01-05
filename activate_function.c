@@ -10,6 +10,7 @@
 void activate_op(stack_t **stack, char *operation, unsigned int line_number)
 {
 	int i = 0;
+
 	instruction_t operations[] = {
 		{"push", f_push},
 		{"pall", f_pall},
@@ -20,6 +21,7 @@ void activate_op(stack_t **stack, char *operation, unsigned int line_number)
 	{
 		if (strcmp(operation, operations[i].opcode) == 0)
 		{
+			global.ops = operation;
 			operations[i].f(stack, line_number);
 			return;
 		}

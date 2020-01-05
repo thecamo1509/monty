@@ -34,7 +34,7 @@ int read_file(char *file, stack_t **stack)
 		if (operation != NULL)
 			activate_op(stack, operation, counter);
 	}
-	free(line);
 	fclose(global.fd);
+	free(line);
 	return (0);
 }

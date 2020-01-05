@@ -20,6 +20,8 @@ void f_push(stack_t **stack, unsigned int line_number)
 	operation = strtok(NULL, "\n \t\r");
 	if (!operation || (isdigit(*operation) == 0 && *operation != '-'))
 	{
+		free(global.ops);
+		free(newnode);
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}

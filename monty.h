@@ -55,7 +55,7 @@ typedef struct glob_s
 {
 	stack_t **top;
 	FILE *fd;
-	instruction_t **ops;
+	char *ops;
 } glob_t;
 
 extern glob_t global;

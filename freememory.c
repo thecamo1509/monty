@@ -15,4 +15,5 @@ void freememory(void)
 		free(tmp1);
 		tmp1 = tmp2;
 	}
+	fclose(global.fd);
 }

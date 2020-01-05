@@ -28,14 +28,17 @@ void f_push(stack_t **stack, unsigned int line_number)
 		if (isdigit(operation[i]) == 0)
 		{
 			fprintf(stderr, "L%u: usage: push integer\n", line_number);
+			free(newnode);
 			exit(EXIT_FAILURE);
 		}
 	}
 	if (*operation)
+	{
 	n = atoi(operation);
 	newnode->n = n;
 	newnode->next = *stack;
 	newnode->prev = NULL;
+	}
 	if (newnode->next != NULL)
 	{
 		newnode->next->prev = newnode;

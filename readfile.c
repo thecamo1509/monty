@@ -12,31 +12,28 @@ int read_file(char *file, stack_t **stack)
 	ssize_t reading;
 	unsigned int counter = 0;
 	char *line = NULL;
-	FILE *fd;
 	char *operation;
 
-	if(!file)
+	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", file);
 		exit(EXIT_FAILURE);
 	}
+	global.fd = fopen(file, "r");
 
-	fd = fopen(file, "r");
-
-	if (!fd)
+	if (!global.fd)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", file);
 		exit(EXIT_FAILURE);
 	}
 	atexit(freememory);
-	while ((reading = getline(&line, &len, fd)) != -1)
+	while ((reading = getline(&line, &len, global.fd)) != -1)
 	{
 		operation = strtok(line, "\n \t\r");
 		counter++;
 		if (operation != NULL)
 			activate_op(stack, operation, counter);
 	}
-	free(line);
-	fclose(fd);
+	fclose(global.fd);
 	return (0);
 }

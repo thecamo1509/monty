@@ -46,6 +46,7 @@ typedef struct instruction_s
 /**
  * struct glob_s - Global struct variable
  * @top: Top of the stack
+ * @fd: Global filedescriptor
  * @ops: Operations
  * Description: Struct variable that works as global variable
  * to track the stack
@@ -53,6 +54,7 @@ typedef struct instruction_s
 typedef struct glob_s
 {
 	stack_t **top;
+	FILE *fd;
 	instruction_t **ops;
 } glob_t;
 

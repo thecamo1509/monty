@@ -100,3 +100,29 @@ void f_pop(stack_t **stack, unsigned int line_number)
 	(*stack) = (*stack)->next;
 	free(node);
 }
+
+/**
+ * f_swap - swaps 2 elements of the top of the stack
+ * @stack: pointer to the first node
+ * @line_number: value of new node
+ */
+
+void f_swap(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp;
+
+	if (!(*stack) || !((*stack)->next))
+	{
+		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	tmp = (*stack)->next;
+	(*stack)->prev = (*stack)->next;
+	(*stack)->next = tmp->next;
+	tmp->prev = NULL;
+	(*stack)->prev = tmp;
+	if (tmp->next)
+		tmp->next->prev = *stack;
+	tmp->next = *stack;
+	(*stack) = (*stack)->prev;
+}
